@@ -1,0 +1,102 @@
+#1.欢迎光临本系统，请选择你需要做的是
+#1）查找学生信息——请输入学生的编号——学生信息
+#2）删除学生信息——请输入学生编号——删除成功/删除失败
+#3）增加学生信息——请输入增加学生的（1，编号，2.姓名，3.成绩）
+
+
+#定义管理系统界面
+def show():
+    print("-—————*******—————-")
+    print(" 欢迎进入 学生管理系统")
+    print(" 1.添加学生信息")
+    print(" 2.删除学生信息")
+    print(" 3.查询学生信息")
+    print(" 4.退出系统")
+    print("-—————*******—————-")
+#定义一个列表
+students=[]
+while True:
+    #展示用户界面
+    show()
+    #提醒用户选择功能
+    #并将功能对应的序号赋值给变量
+    num=int(input('请选择你要使用的功能：'))
+    if num==1:
+        print('您选择了“添加学生信息的功能”')
+        number=input('请输入学生学号：')
+        name=input('请输入学生姓名：')
+        score=input('请输入学生成绩：')
+
+        # 验证学号是否出错
+        i = 0
+        a= 0
+        for each_iteam in students:
+            if each_iteam['number'] == number:
+                a = 1
+                break
+            else:
+                i = i + 1
+        if a==1:
+            print("输入学生学号有误，添加失败！")
+            break
+        else:
+            # 定义一个字典，存放单个学生信息
+            stu_dict = {}
+            stu_dict['name'] = name
+            stu_dict['number'] = number
+            stu_dict['score'] =score
+            # 把每一个学生信息放入列表
+            students.append(stu_dict)
+            print("输入学号正确，添加成功！")
+    elif num==2:
+        print('您选择了“删除学生信息”功能')
+        de_num=input('请输入你要删除的学生学号')
+        #判断学生学号在不在列表中
+        i = 0
+        a = 0
+        for each_iteam in students:
+            if each_iteam['number']==de_num:
+                a=1
+
+            else:
+                i=i+1
+            if a==1:
+                print('输入学号正确！')
+                del stu_dict['score']
+                print('删除学生成绩成功！')
+            else:
+                print('输入学号错误！请重新输入！')
+
+    elif num==3:
+        print('您选择了“查询学生信息”的功能')
+        seeknum=input('请输入你要查询的学号：')
+        i = 0
+        a = 0
+        for each_iteam in students:
+            if stu_dict['number'] == seeknum:
+                a = 1
+                break
+            else:
+                i = i + 1
+        if a==0:
+            print('输入学号有误！请重新输入！')
+        else:
+            print('查询成功！')
+        print('查询结果如下')
+        print("学号:" ,each_iteam['number'])
+        print("姓名:",each_iteam['name'])
+        print("成绩:",each_iteam['score'])
+    elif num==4:
+        print('您选择了”退出系统功能“')
+        print('您确定要退出吗')
+        answer=input('请输入”yes“或者”no“')
+        if answer=="yes":
+            print('谢谢您使用本系统，欢迎再次使用！')
+        else:
+            print("请您选择你要再次使用的功能")
+    else:
+        print('您输入有误，请重新输入')
+
+
+
+
